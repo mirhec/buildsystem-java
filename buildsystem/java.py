@@ -139,7 +139,7 @@ class JavaBuilder(BaseBuilder):
         else:
             name = '%s/%s.jar' % (self.bindir, self.product_title,)
 
-        if hasattr(self, 'main_class'):
+        if hasattr(self, 'main_class') and self.main_class is not None:
             self.run(['jar', 'cfe', name, self.main_class, '-C', '%s/classes/' % self.bindir, '.'])
         else:
             self.run(['jar', 'cf', name, '-C', '%s/classes/' % self.bindir, '.'])
