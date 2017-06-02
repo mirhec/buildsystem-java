@@ -1,6 +1,6 @@
 '''This module defines the KotlinBuilder.'''
 import os
-from java import JavaBuilder, task
+from buildsystem.java import JavaBuilder, task
 
 class KotlinBuilder(JavaBuilder):
     '''Builds kotlin projects.'''

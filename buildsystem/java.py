@@ -4,7 +4,7 @@ import shutil
 import zipfile
 from concurrent.futures import ThreadPoolExecutor
 from buildsystem.base import BaseBuilder, task
-from dependency_resolver import FileDependencyResolver
+from buildsystem.dependency_resolver import FileDependencyResolver
 
 class JavaBuilder(BaseBuilder):
     """Builds Java projects."""

@@ -1,5 +1,5 @@
 '''This module defines the ModifyJarBuilder class.'''
-from java import JavaBuilder, task
+from buildsystem.java import JavaBuilder, task
 
 class ModifyJarBuilder(JavaBuilder):
     '''The ModifyJarBuilder is used to modify an existing jar file (replace some contents, etc).'''
