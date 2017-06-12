@@ -77,6 +77,13 @@ class JavaBuilder(BaseBuilder):
                                 executor.submit(self.run, cmd)
                                 files = []
 
+                # feet the compiler with the rest of the java files
+                if len(files) > 0:
+                    cmd = ['javac', '-sourcepath', self.srcdir, '-cp', classpath, '-d',
+                           self.bindir + '/classes']
+                    cmd.extend(files)
+                    self.run(cmd)
+
     @task('crypt')
     def do_crypt(self):
         '''Crypt all class files and jars that are specified in `crypt`.
