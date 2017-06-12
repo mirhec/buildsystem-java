@@ -63,25 +63,25 @@ class JavaBuilder(BaseBuilder):
             self.run(cmd)
         else:
             with ThreadPoolExecutor(max_workers=4) as executor:
-                files = []
+                javafiles = []
                 for (path, _, files) in os.walk(self.srcdir):
                     for file in files:
                         if file[-5:] == '.java':
                             file = path + '\\' + file
                             file = file.replace('\\', '/')
-                            files.append(file)
-                            if len(files) >= 100:
+                            javafiles.append(file)
+                            if len(javafiles) >= 100:
                                 cmd = ['javac', '-sourcepath', self.srcdir, '-cp',
                                        classpath, '-d', self.bindir + '/classes']
-                                cmd.extend(files)
+                                cmd.extend(javafiles)
                                 executor.submit(self.run, cmd)
-                                files = []
+                                javafiles = []
 
                 # feet the compiler with the rest of the java files
-                if len(files) > 0:
+                if len(javafiles) > 0:
                     cmd = ['javac', '-sourcepath', self.srcdir, '-cp', classpath, '-d',
                            self.bindir + '/classes']
-                    cmd.extend(files)
+                    cmd.extend(javafiles)
                     self.run(cmd)
 
     @task('crypt')
